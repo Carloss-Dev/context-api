@@ -1,0 +1,14 @@
+teste de tempo: 
+
+const currentTime = new Date().getTime() / 1000; // Tempo atual em segundos
+        const expirationTime = decodedPayload.exp; // Tempo de expiração do token
+        const timeRemaining = expirationTime - currentTime; // Tempo restante até a expiração em segundos
+
+        // Calcular minutos e segundos restantes
+        const minutes = Math.max(0, Math.floor(timeRemaining / 60)); // Calcula os minutos restantes, garantindo que não seja negativo
+        const seconds = Math.max(0, Math.floor(timeRemaining % 60)); // Calcula os segundos restantes, garantindo que não seja negativo
+
+        console.log(
+          `Tempo restante até a expiração: ${minutes} minutos e ${seconds} segundos`
+        );
+

@@ -1,0 +1,19 @@
+{
+  "files.exclude": {
+    ".gitignore": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "eslint.config.js": true,
+    "index.html": true,
+    "node_modules": true,
+    "package-lock.json": true,
+    "package.json": false,
+    "README.md": true,
+    "vite.config.js": true,
+    "**/.vscode": true
+  }
+}
