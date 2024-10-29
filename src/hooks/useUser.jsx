@@ -6,7 +6,6 @@ export const useUsers = () => {
   const [accessToken, setAccessToken] = useLocalStorage("accessToken", "");
   const [refreshToken, setRefreshToken] = useLocalStorage("refreshToken", "");
   const [users, setUsers] = React.useState();
-  const [user, setUser] = React.useState();
   const getUsers = async () => {
     try {
       const { data } = await api.get(`/users`);
@@ -34,25 +33,5 @@ export const useUsers = () => {
     }
   };
 
-  const loginUser = async (userData) => {
-    try {
-      const { username, password } = userData;
-      const tokenData = await api.post("/auth/login", {
-        username,
-        password,
-        expiresInMins: 30,
-      });
-
-      console.log(tokenData);
-
-      setAccessToken(JSON.stringify(tokenData.data.accessToken));
-      setRefreshToken(JSON.stringify(tokenData.data.refreshToken));
-
-      console.log("Usuário logado com sucesso");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return { users, getUsers, loginUser, getCurrentAuthUser };
+  return { users, getUsers, getCurrentAuthUser };
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { CgMail, CgPassword } from "react-icons/cg";
+import { CgPassword } from "react-icons/cg";
 import { FaApple, FaUserAstronaut } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,6 @@ import { Form } from "../../components/Form/Form";
 import { Input } from "../../components/Input/Input";
 import { Paragraph } from "../../components/Texts/Paragraph/Paragraph";
 import { Title } from "../../components/Texts/Title/Title";
-import { useUsers } from "../../hooks/useUser";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export const Login = () => {
@@ -18,8 +17,7 @@ export const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
-  const { loginUser, getCurrentAuthUser } = useUsers();
-  const { userData } = React.useContext(AuthContext);
+  const { isAuth, singIn } = React.useContext(AuthContext);
 
   function handleValues({ target }) {
     const { name, value } = target;
@@ -28,8 +26,17 @@ export const Login = () => {
 
   function handleLogin(e) {
     e.preventDefault();
-    loginUser(formData);
+    if (!isAuth) {
+      singIn(formData);
+    }
   }
+
+  React.useEffect(() => {
+    console.log(isAuth);
+    if (isAuth) {
+      navigate("/home");
+    }
+  }, [isAuth]);
 
   return (
     <Container variant={"login"}>
